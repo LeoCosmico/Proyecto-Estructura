@@ -1,5 +1,6 @@
 #include <iostream>
 #include <stdlib.h>
+#include <iomanip>
 using namespace std;
 
 struct planeta{
@@ -59,10 +60,10 @@ void agg_amb(string amb, int ox){
 }
 
 void mos_amb(){
-    cout<<".-.-.-.-.-LISTA DE AMBIENTES.-.-.-.-"<<endl;
+    cout<<".-.-.-.-.-.-.LISTA DE AMBIENTES.-.-.-.-.-"<<endl;
     ap=bp;
     while(ap!=NULL){
-        cout<<"Planeta:"<<ap->ambiente<<"    "<<"N. de Oxígeno:"<<ap->oxigeno<<endl;
+        cout<<"Planeta: "<<setw(15)<<left<<ap->ambiente<<setw(15)<<left<<"N. de Oxígeno: "<<ap->oxigeno<<endl;
         ap=ap->prxpl;
     }
 }
@@ -80,7 +81,7 @@ int busc_amb(string amb){
 
 int valid_amb(string amb){
   for (int i = 0; i < 20; i++) {
-    if (amb[i] < 'A' || amb[i] > 'Z') {
+    if (amb[i]<'A'||amb[i]>'Z') {
         return 1;}
   }
   return 0;
@@ -93,18 +94,16 @@ void elim_amb(string amb){
         while(zp!=NULL && zp->ambiente!=amb){
             xp=zp;
             zp=zp->prxpl;}
-        
             if(zp==bp){
                 bp=bp->prxpl;}
             else{
                 xp->prxpl=zp->prxpl;
              delete(zp);
-             cout<<"¡Su ambiente ha sido eliminado con éxito!"<<endl;}  
-           }        
+             cout<<"¡Su ambiente ha sido eliminado con éxito!"<<endl;}
+        }        
 
-    if(busc_amb(amb)==0){
-        cout<<"¡No puedes eliminar un ambiente que no existe!"<<endl;
-    }
+    else{
+        cout<<"¡No puedes eliminar un ambiente que no existe!"<<endl;}
 }
 void crea_amb(){
     int wamb2=0,wamb1=0;
@@ -139,6 +138,7 @@ void mod_amb(){
     int oxx;
     int wamo1=0, wamo2=0, wamo3=0;
     while(wamo3<1){
+        mos_amb();
         cout<<"Indique el nombre del ambiente que desea modificar:"<<endl;
         cout<<"Tip: Recuerda ingresarlo en MAYÚSCULAS"<<endl;
         cin>>amb;
@@ -175,10 +175,10 @@ int submenu_amb(){
     int submap;
     cout<<".-.-.OPCIONES DE AMBIENTES.-.-."<<endl;
     cout<<".-.-.-..-.-.-.-.-.-.-.-.-.-.-.-"<<endl;
-    cout<<"1. Agregar un ambiente-.-.-.-.-"<<endl;
-    cout<<"2. Modificar un ambiente-.-.-.-."<<endl;
-    cout<<"3. Eliminar un ambiente-.-.-.-."<<endl;
-    cout<<"4. Consultar ambientes-.-.-.-.-"<<endl;
+    cout<<"1. Agregar un Ambiente-.-.-.-.-"<<endl;
+    cout<<"2. Modificar un Ambiente-.-.-.-."<<endl;
+    cout<<"3. Eliminar un Ambiente-.-.-.-."<<endl;
+    cout<<"4. Consultar Ambientes-.-.-.-.-"<<endl;
     cout<<"5. Regresar-.-.-.-.-.-.-.-.-.-."<<endl;
     cout<<"-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-"<<endl;
     cin>>submap;
@@ -196,10 +196,11 @@ void default_amb(){
     agg_amb("ANDROMEDA",89);
 }
 void mos_alien(){
-    cout<<".-.-.-.-.-LISTA DE ESPECIES.-.-.-.-"<<endl;
+    cout<<".-.-.-.-.-.-.-.-.-.-.-.-LISTA DE ESPECIES-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-"<<endl;
     al=bl;
     while(al!=NULL){
-        cout<<"Especie:"<<al->especie<<" "<<"Salud:"<<al->salud<<" "<<"Energía"<<al->energia<<" "<<"Planeta:"<<al->ambiente<<endl;
+        cout << "Especie: "<<setw(15)<<left<<al->especie<<" "<<"Salud: "<<setw(5)<<left<<al->salud<<" "<<"Energía: "<<setw(5)<<left<<al->energia<<" "
+        <<"Planeta: "<<setw(5)<<right<<al->ambiente<<endl;
         al=al->prxl;
     }
 }
@@ -225,7 +226,7 @@ void ins_alien(string amb, string esp, int hp, int sp){
 }    
 
 void default_alien(){
-    ins_alien("BOCCANONG",    "Ceronivas",      60,  100);    //Ambiente, Especie, Salud, Energia
+    ins_alien("BOCCANONG",    "Ceronivas",      60,  100);    //Ambiente, Especie, Salud, Energía
     ins_alien("AUREOLERNO",   "Demoniangeles",  65,   85);
     ins_alien("PIRULIN",      "Yublin",         100,  55);
     ins_alien("XORBE",        "Ebrax",          65,   65);
@@ -329,28 +330,26 @@ void elim_alien(string esp){
         while (zl!=NULL && zl->especie!=esp){
             xl=zl;
             zl=zl->prxl;}
-        
             if (zl==bl){
                 bl=bl->prxl;}
             else{
                 xl->prxl=zl->prxl;
              delete (zl);
-             cout<<"¡Su especie ha sido eliminada con exito!"<<endl;}  
-           }         
+             cout<<"¡Su especie ha sido eliminada con exito!"<<endl;}
+        }         
 
     else{
-        cout<<"¡No puedes eliminar una especie que no existe!"<<endl;
-    }
+        cout<<"¡No puedes eliminar una especie que no existe!"<<endl;}
 }
 
 int submenu_aliens(){
     int submal;
     cout<<".-.-.-.-.-OPCIONES DE ESPECIES.-.-.-.-.-.-"<<endl;
     cout<<".-.-.-..-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-."<<endl;
-    cout<<"1. Agregar una especie-..-.-.-.-.-.-.-.-.-"<<endl;
-    cout<<"2. Modificar una especie.-.-.-.-.-.-.-.-.-"<<endl;
-    cout<<"3. Eliminar una especie-.-.-.-.-.-.-.-.-.-"<<endl;
-    cout<<"4. Mostrar especies.-.-.-.-.-.-.-.-.-.-.-."<<endl;
+    cout<<"1. Agregar una Especie-..-.-.-.-.-.-.-.-.-"<<endl;
+    cout<<"2. Modificar una Especie.-.-.-.-.-.-.-.-.-"<<endl;
+    cout<<"3. Eliminar una Especie-.-.-.-.-.-.-.-.-.-"<<endl;
+    cout<<"4. Mostrar Especies.-.-.-.-.-.-.-.-.-.-.-."<<endl;
     cout<<"5. Regresar-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-"<<endl;
     cout<<".-.-.-..-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-."<<endl;
     cin>>submal;
@@ -362,7 +361,7 @@ int submenu_aliens(){
 
 int submenu_acceso(){
     int submac;
-    cout<<"-.-.-GESTION DE ACCESORIOS-.-.-.-"<<endl;
+    cout<<"-.-.-GESTIÓN DE ACCESORIOS-.-.-.-"<<endl;
     cout<<".-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-."<<endl;
     cout<<"1. Crear Nuevo Accesorio-.-.-.-.-"<<endl;
     cout<<"2. Modificar Accesorio.-.-.-.-.-."<<endl;
@@ -511,9 +510,10 @@ void crea_acceso(){
 
 void mos_acceso(){
     ac=bc;
+    cout<<".-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.LISTA DE ACCESORIOS.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-"<<endl;
     while(ac!=NULL){
-        cout<<"Accesorio:"<<" "<<ac->nacceso<<" "<<"D. Infligido:"<<" "<<ac->salper<<" "<<"E. Gastada:"<<" "<<ac->energas<<" "<<"D. Reducido:"<<" "<<ac->impred<<" "<<
-        "S. Rest:"<<" "<<ac->salrest<<" "<<"E. Rest:"<<" "<<ac->enerest<<" "<<"N. de Oxígeno:"<<ac->oxigeno<<" "<<endl;
+        cout<<"Accesorio: "<<setw(12)<<left<<ac->nacceso<<" "<<setw(2)<<left<<"D. Infligido: "<<setw(2)<<left<<ac->salper<<" "<<"E. Gastada: "<<setw(2)<<left<<ac->energas<<" "<<"D. Reducido: "<<setw(3)<<left<<ac->impred<<" "<<
+        "S. Rest: "<<setw(2)<<left<<ac->salrest<<" "<<"E. Rest: "<<setw(2)<<left<<ac->enerest<<" "<<"N. de Oxígeno: "<<setw(2)<<left<<ac->oxigeno<<" "<<endl;
         ac=ac->prxacc;
     }
 }
@@ -658,18 +658,16 @@ void elim_acceso(string nac){
         while (zc!=NULL && zc->nacceso!=nac){
             xc=zc;
             zc=zc->prxacc;}
-        
             if (zc==bc){
                 bc=bc->prxacc;}
             else{
                 xc->prxacc=zc->prxacc;
              delete(zc);
-             cout<<"¡Su accesorio fue eliminado con éxito!"<<endl;}  
-           }      
+             cout<<"¡Su accesorio fue eliminado con éxito!"<<endl;}
+        }      
 
     else{
-        cout<<"¡No puedes eliminar un accesorio que no existe!"<<endl;
-    }
+        cout<<"¡No puedes eliminar un accesorio que no existe!"<<endl;}
 }
 
 void default_acceso(){
@@ -689,7 +687,7 @@ void default_acceso(){
     ins_acceso("PILDOVIDA",      0,  0,   0,   0,  30,  0);
     ins_acceso("PILDOMIXTA",     0,  0,   0,   10, 10,  0);
     ins_acceso("SUPILDOMIXTA",   0,  0,   0,   10, 10,  0);
-    ins_acceso("BOCCAVELLA",     0,  0,   0,   0,  0,   70); //Accesorios de Adaptacion
+    ins_acceso("BOCCAVELLA",     0,  0,   0,   0,  0,   70); //Accesorios de Adaptación
     ins_acceso("ALICUERNO",      0,  0,   0,   0,  0,   71);
     ins_acceso("TINTIN",         0,  0,   0,   0,  20,  72);
     ins_acceso("XIERBA",         0,  0,   0,   0,  0,   73);
@@ -703,12 +701,12 @@ int submenu_solds(){
     int submsol;
     cout<<".-.-.-..-.-.-OPCIONES DE SOLDADOS.-.-.-.-.-.-.-.-.-"<<endl;
     cout<<".-.-.-..-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-"<<endl;
-    cout<<"1. Agregar un soldado-..-.-.-.-.-.-.-.-.-.-.-.-.-.-"<<endl;
-    cout<<"2. Modificar un soldado.-.-.-.-.-.-.-.-.-.-.-.-.-.-"<<endl;
-    cout<<"3. Eliminar un soldado-.-.-.-.-.-.-.-.-.-.-.-.-.-.-"<<endl;
+    cout<<"1. Agregar un Soldado-..-.-.-.-.-.-.-.-.-.-.-.-.-.-"<<endl;
+    cout<<"2. Modificar un Soldado.-.-.-.-.-.-.-.-.-.-.-.-.-.-"<<endl;
+    cout<<"3. Eliminar un Soldado-.-.-.-.-.-.-.-.-.-.-.-.-.-.-"<<endl;
     cout<<"4. Agregar Objetos a la mochila de un soldado.-.-.-"<<endl;
-    cout<<"5. Modificar un slot de la mochila de un soldado.-."<<endl;
-    cout<<"6. Eliminar un slot de la mochila de un soldado.-.-"<<endl;
+    cout<<"5. Modificar un Slot de la mochila de un soldado.-."<<endl;
+    cout<<"6. Eliminar un Slot de la mochila de un soldado.-.-"<<endl;
     cout<<"7. Regresar-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-."<<endl;
     cout<<".-.-.-..-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-"<<endl;
     cin>>submsol;
@@ -741,6 +739,7 @@ void agg_solds(){
             es=es->prxsol;}
         cout<<"Ingresa el nombre del alumno:"<<endl;
         cin>>aluma;
+        cout<<"¡Su alumno se ha registrado con éxito!"<<endl;
         as->alumno=aluma;
         es->prxsol=NULL;}
     else{
@@ -763,8 +762,10 @@ int busc_solds(string aluma){
 
 void mos_solds(){
     as=bs;
+    cout<<".-.-.-.-.-.-.-.-.-.-.-.-.-LISTA DE SOLDADOS.-.-.-.-.-.-.-.-.-.-.-.-.-."<<endl;
     while(as!=NULL){
-        cout<<"Alumno:"<<as->alumno<<"  "<<"Especie:"<<as->especie<<"  "<<"Salud:"<<as->salud<<"  "<<"Energía:"<<as->energia<<"  "<<"Planeta:"<<as->ambiente<<endl;
+        cout<<"Alumno: "<<setw(5)<<left<<as->alumno<<" "<<"Especie: "<<setw(5)<<left<<as->especie<<" "<<"Salud: "<<setw(5)<<left<<as->salud<<" "<<
+        "Energía:"<<setw(5)<<left<<as->energia<<" "<<"Planeta: "<<setw(5)<<left<<as->ambiente<<endl;
         as=as->prxsol;
     }
 }
@@ -811,21 +812,19 @@ void elim_solds(string alumn){
     if(busc_solds(alumn)==1){
         struct solds *zs,*xs=NULL; 
         zs=bs;
-        while (zs!=NULL && zs->alumno!=alumn){
+        while(zs!=NULL && zs->alumno!=alumn){
             xs=zs;
             zs=zs->prxsol;}
-        
             if (zs==bs){
                 bs=bs->prxsol;}
             else{
                 xs->prxsol=zs->prxsol;
              delete(zs);
-             cout<<"¡Su soldado fue eliminado con éxito!"<<endl;}  
-           }      
+             cout<<"¡Su soldado fue eliminado con éxito!"<<endl;}
+        }      
 
     else{
-        cout<<"¡No puedes eliminar un soldado inexistente!"<<endl;
-    }
+        cout<<"¡No puedes eliminar un soldado inexistente!"<<endl;}
 }
 
 void agg_mochila(string alumn){
@@ -866,7 +865,7 @@ void mod_mochila(string alumn){
         cout<<"(Valores válidos del 1-5)"<<endl;
         cin>>is;
             if(is<0 && is>4){
-                cout<<"CIFRA INVALIDA..."<<endl;}
+                cout<<"CIFRA INVÁLIDA..."<<endl;}
             else{
                 while(msm1<1){
                     cout<<"¿Con qué accesorio desea reemplazarlo?"<<endl;
@@ -904,7 +903,7 @@ void elim_mochila(string alumn){
             cout<<"(Valores válidos del 1-5)"<<endl;
             cin>>is;
             if(is!=1 || is!=2 || is!=3 || is!=4 || is!=5){
-                cout<<"CIFRA INVALIDA..."<<endl;}
+                cout<<"CIFRA INVÁLIDA..."<<endl;}
             else{
                 as->mochila[is].nacceso="";
                 as->mochila[is].salper=0;
@@ -913,7 +912,7 @@ void elim_mochila(string alumn){
                 as->mochila[is].salrest=0;
                 as->mochila[is].enerest=0;
                 as->mochila[is].oxigeno=0;
-                cout<<"Se ha eliminado su slot de mochila con éxito"<<endl;}
+                cout<<"¡Se ha eliminado su slot de mochila con éxito!"<<endl;}
         }
     }
 }
@@ -1086,7 +1085,8 @@ int main() {
                             mod_amb();
                             break;
                         case 3:
-                            while (wame < 1) {
+                            while(wame<1){
+                                mos_amb();
                                 cout<<"Ingresa el nombre del ambiente que deseas eliminar:"<<endl;
                                 cout<<"Tip: Recuerda escribirlo en MAYÚSCULAS"<<endl;
                                 cin >> amb;
